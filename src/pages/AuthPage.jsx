@@ -6,7 +6,7 @@ const AuthLayout = () => {
 	const pathname = useLocation().pathname;
 
 	return (
-		<div className="w-full flex items-center justify-center min-h-screen text-[#747474]">
+		<div className="w-full flex items-center justify-center min-h-screen text-[#747474] font-WorkSans">
 			<div className="max-w-[450px] w-full mx-5 border border-mBorder rounded-[10px] px-[1rem] py-[2rem]">
 				<Outlet />
 			</div>

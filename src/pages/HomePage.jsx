@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const HomePage = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+	return <div className="font-DMSans">Dashboard</div>;
+};
 
-export default HomePage
+export default HomePage;

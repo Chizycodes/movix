@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap');
+
 @layer components {
 	.v-input {
 		@apply border h-[51px] border-[#E1E1E1] rounded-lg py-[13px] px-[16px] placeholder:text-[#C1C1C1] focus:border-mRed outline-none w-full;
