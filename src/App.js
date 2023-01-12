@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import Auth from './pages/Auth';
+import AuthPage from './pages/AuthPage';
 
 function App() {
 	return (
 		<div className="bg-[#FFFFFF]">
 			<Routes>
-				<Route path="/" element={<Auth />} />
-				<Route path="/auth" element={<Auth />} />
+				<Route path="/" element={<AuthPage />} />
+				<Route path="/auth/*" element={<AuthPage />} />
 				{/* <Route path="/dashboard/" element={<VirtualAccount />} /> */}
 				{/* <Route path="/dashboard/virtual-account" element={<VirtualAccount />} /> */}
 
