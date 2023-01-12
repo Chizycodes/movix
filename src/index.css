@@ -10,6 +10,6 @@
 	}
 
 	.v-btn {
-		@apply md:px-[40px] py-[13px] h-[51px] outline-none border-[#000000] w-full rounded-lg text-[#ffffff] text-sm bg-[#000000] font-bold uppercase;
+		@apply md:px-[40px] py-[13px] h-[51px] outline-none border-none rounded-lg text-[#ffffff] text-sm bg-[#000000] font-bold uppercase btn hover:bg-mRed;
 	}
 }
