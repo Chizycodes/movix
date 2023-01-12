@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from './AuthHeader';
 
-const Login = () => {
+const Signup = () => {
 	const navigate = useNavigate();
 	const [show, setShow] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -18,13 +18,28 @@ const Login = () => {
 	});
 
 	const onSubmit = (data) => {
-		navigate('/dashboard');
 		console.log(data);
 	};
 	return (
 		<>
-			<AuthHeader text="Please sign-up to start your experience" />
+			<AuthHeader text="Please sign-in to your account and start your experience" />
 			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="mb-[1rem]">
+					<input
+						type="text"
+						placeholder="Full Name"
+						className="v-input"
+						{...register('name', {
+							required: true,
+						})}
+					/>
+					{errors.name && errors.name.type === 'required' && (
+						<span role="alert" className="text-[#ff00009e] text-xs">
+							Name required
+						</span>
+					)}
+				</div>
+
 				<div className="mb-[1rem]">
 					<input
 						type="email"
@@ -66,17 +81,17 @@ const Login = () => {
 				</div>
 
 				<button type="submit" className="v-btn">
-					Login
+					Register
 				</button>
 			</form>
 			<p className="text-[#747474] mt-5 font-medium text-sm text-center">
-				Don't have an account?{' '}
-				<Link to="/auth/register" className="text-mRed">
-					Register
+				Already have an account?{' '}
+				<Link to="/auth/login" className="text-mRed">
+					Login
 				</Link>
 			</p>
 		</>
 	);
 };
 
-export default Login;
+export default Signup;

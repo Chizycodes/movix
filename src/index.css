@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.m-input {
-    @apply border-[0.5px] border-[#E1E1E1] rounded-lg py-[13px] px-[16px] placeholder:text-[#C1C1C1] focus:border-[#5444F2] outline-none w-full;
-}
+@layer components {
+	.v-input {
+		@apply border h-[51px] border-[#E1E1E1] rounded-lg py-[13px] px-[16px] placeholder:text-[#C1C1C1] focus:border-mRed outline-none w-full;
+	}
 
-.m-btn {
-    @apply md:px-[40px] py-[13px] h-[51px] outline-none border-[#000000] w-full rounded-lg text-[#ffffff] text-sm bg-[#000000] font-bold uppercase;
+	.v-btn {
+		@apply md:px-[40px] py-[13px] h-[51px] outline-none border-[#000000] w-full rounded-lg text-[#ffffff] text-sm bg-[#000000] font-bold uppercase;
+	}
 }
