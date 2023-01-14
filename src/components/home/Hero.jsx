@@ -17,7 +17,7 @@ const Hero = () => {
 
 							<span className="flex items-center gap-2">
 								<img src="/images/tomato.svg" alt="tomato" />
-								<p>86.0/100</p>
+								<p>96%</p>
 							</span>
 						</div>
 						<p className="text-sm font-medium mb-[1.5rem]">
