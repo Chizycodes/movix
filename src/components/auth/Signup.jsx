@@ -80,7 +80,7 @@ const Signup = () => {
 					)}
 				</div>
 
-				<button type="submit" className="v-btn">
+				<button type="submit" className="v-btn w-full">
 					Register
 				</button>
 			</form>

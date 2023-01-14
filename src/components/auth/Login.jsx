@@ -65,7 +65,7 @@ const Login = () => {
 					)}
 				</div>
 
-				<button type="submit" className="v-btn">
+				<button type="submit" className="v-btn w-full">
 					Login
 				</button>
 			</form>
