@@ -22,9 +22,9 @@ const Nav = () => {
 						onClick={handleSearch}
 					/>
 				</div>
-				<div className="text-[#fff] flex items-center gap-3">
+				<div className="text-[#fff] flex items-center gap-5">
 					<p>Hi, Fullname</p>
-					<img src="/images/menu.svg" alt="menu" />
+					<img src="/images/menu.svg" className='cursor-pointer' alt="menu" />
 				</div>
 			</div>
 		</nav>
