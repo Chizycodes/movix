@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Movie = () => {
+const Movie = ({ movie }) => {
 	const [isFav, setIsFav] = useState(false);
 
 	const handleFavorite = () => {
@@ -21,14 +21,14 @@ const Movie = () => {
 					/>
 				</div>
 
-				<img className="w-full h-[370px]" src="/images/movie1.svg" alt="movie" />
+				<img className="w-full h-[370px]" src={process.env.REACT_APP_IMAGE_URL + movie?.poster_path} alt="movie" />
 				<div className="bg-[#fff]">
-					<p className="text-[#9CA3AF] mt-3">USA, 2018</p>
-					<h2 className="text-[#111827] font-bold text-[18px]">Spider-Man : Into The Spider Verse</h2>
+					<p className="text-[#9CA3AF] mt-3">{movie?.release_date}</p>
+					<h2 className="text-[#111827] font-bold text-[18px]">{movie?.title}</h2>
 					<div className="my-3 text-xs flex justify-between gap-5 w-full">
 						<span className="flex items-center gap-2">
 							<img src="/images/imdb.svg" alt="imdb" />
-							<p>86.0/100</p>
+							<p>{movie?.vote_average}/10</p>
 						</span>
 
 						<span className="flex items-center gap-2">
@@ -36,7 +36,7 @@ const Movie = () => {
 							<p>96%</p>
 						</span>
 					</div>
-					<p className="text-[#9CA3AF] text-xs font-bold">Animation, Action, Adventure</p>
+					{/* <p className="text-[#9CA3AF] text-xs font-bold">Animation, Action, Adventure</p> */}
 				</div>
 			</div>
 		</div>

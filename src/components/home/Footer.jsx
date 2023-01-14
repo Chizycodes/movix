@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
-		<footer className="max-w-[1280px] mx-auto flex flex-col items-center">
+		<footer className="max-w-[1280px] mx-5 flex flex-col items-center">
 			<div className="flex items-center gap-5 md:gap-10 mb-[35px]">
 				<img src="/images/fb.svg" alt="fb" />
 				<img src="/images/instagram.svg" alt="instagram" />
