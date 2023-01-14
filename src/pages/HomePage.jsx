@@ -4,7 +4,7 @@ import MoviesSlide from '../components/home/movies/MoviesSlide';
 
 const HomePage = () => {
 	return (
-		<div className="font-DMSans">
+		<div className="font-DMSans bg-[#fff]">
 			<Hero />
 			<section className="max-w-[1280px] mx-auto py-16">
 				<div className="mb-20">
@@ -19,7 +19,7 @@ const HomePage = () => {
 					<MoviesSlide type="videos" title="Exclusive Videos" />
 				</div>
 
-				<div className="mb-20">
+				<div className="mb-10">
 					<MoviesSlide type="casts" title="Featured Casts" />
 				</div>
 			</section>
