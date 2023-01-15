@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from './AuthHeader';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../redux/auth/authSlice';
 
 const Signup = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { loading, error, msg } = useSelector((state) => state.auth);
 	const [show, setShow] = useState(false);
-	const [loading, setLoading] = useState(false);
 
 	const {
 		register,
@@ -19,6 +22,9 @@ const Signup = () => {
 
 	const onSubmit = (data) => {
 		console.log(data);
+		dispatch(registerUser(data));
+		console.log(error, 'error');
+		console.log(msg, 'msg');
 	};
 	return (
 		<>
@@ -80,8 +86,8 @@ const Signup = () => {
 					)}
 				</div>
 
-				<button type="submit" className="v-btn w-full">
-					Register
+				<button type="submit" className={`v-btn w-full ${loading ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+					{loading ? 'Loading...' : 'Register'}
 				</button>
 			</form>
 			<p className="text-[#747474] mt-5 font-medium text-sm text-center">
