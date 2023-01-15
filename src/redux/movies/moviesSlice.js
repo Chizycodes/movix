@@ -4,8 +4,8 @@ import axios from 'axios';
 const BASE_URL = process.env.REACT_APP_TMDB_BASE_URL;
 const key = process.env.REACT_APP_TMDB_KEY;
 
-export const fetchMovies = createAsyncThunk('movies/fetchMovies', () => {
-	return axios
+export const fetchMovies = createAsyncThunk('movies/fetchMovies', async () => {
+	return await axios
 		.get(`${BASE_URL}/discover/movie?api_key=${key}`)
 		.then((res) => {
 			console.log(res.data, 'movies');

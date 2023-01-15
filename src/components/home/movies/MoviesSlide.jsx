@@ -31,17 +31,30 @@ const MoviesSlide = ({ type, title }) => {
 				</div>
 			) : (
 				<div className="carousel carousel-center space-x-4">
-					{type === 'movies' &&
-						movies.length > 0 &&
-						movies.map((movie) => {
-							return (
-								<div className="carousel-item">
-									<Movie key={movie.id} movie={movie} />
-								</div>
-							);
-						})}
+					<>
+						{type === 'movies' &&
+							movies.length > 0 &&
+							movies.map((movie) => {
+								return (
+									<div className="carousel-item">
+										<Movie key={movie.id} movie={movie} />
+									</div>
+								);
+							})}
+					</>
 
-					{type === 'videos' && <Video />}
+					<>
+						{type === 'videos' &&
+							movies.length > 0 &&
+							movies.map((movie) => {
+								return (
+									<div className="carousel-item">
+										<Video key={movie.id} movie={movie} />
+									</div>
+								);
+							})}
+					</>
+
 					{type === 'casts' && <Casts />}
 				</div>
 			)}
