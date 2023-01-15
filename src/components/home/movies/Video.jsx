@@ -5,7 +5,7 @@ const Video = ({ movie }) => {
 		<div>
 			<div className="w-[449px] relative">
 				<img
-					className="w-full h-[253px] object-fit rounded-[10px]"
+					className="w-full h-[253px] object-fit"
 					src={process.env.REACT_APP_IMAGE_URL + movie?.poster_path}
 					alt="movie"
 				/>

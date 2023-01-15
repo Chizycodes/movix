@@ -4,11 +4,11 @@ import Nav from './Nav';
 const Hero = () => {
 	return (
 		<div className="">
-			<div className={`hero min-h-[600px] md:pb-10 px-5 bg-[url('../public/images/header.svg')] flex flex-col`}>
+			<div className={`hero min-h-[600px] md:pb-10 px-5 md:px-10 bg-[url('../public/images/header.svg')] flex flex-col`}>
 				<Nav />
-				<div className="hero-content w-full justify-start gap-10 h-full my-auto">
+				<div className="hero-content w-full justify-start gap-10 h-full my-auto px-0">
 					<div className="max-w-[404px] text-[#ffffff]">
-						<h1 className="text-[35px] leading-[56px] lg:text-[48px] font-bold mb-[1rem]">John Wick 3 : Parabellum</h1>
+						<h1 className="text-[35px] leading-10 md:leading-[56px] lg:text-[48px] font-bold mb-[1rem]">John Wick 3 : Parabellum</h1>
 						<div className="mb-[1.5rem] text-xs flex gap-5">
 							<span className="flex items-center gap-2">
 								<img src="/images/imdb.svg" alt="imdb" />
