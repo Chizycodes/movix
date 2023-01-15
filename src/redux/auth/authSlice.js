@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 
@@ -14,7 +14,12 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (data) =
 	return await createUserWithEmailAndPassword(auth, data.email, data.password, data.displayName)
 		.then((res) => {
 			toast.success('Registration Successful');
-			return res;
+			updateProfile(auth.currentUser, {
+				displayName: data.displayName,
+			}).then((res) => {
+				console.log('Profile Updated');
+                return res;
+			});
 		})
 		.catch((err) => {
 			const error = { ...err };
@@ -29,7 +34,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (data) => {
 			toast.success('Login Successful');
 			const user = {
 				email: res.user.email,
-				displayName: res.user.displayName,
+				name: res.user.displayName,
 			};
 			return user;
 		})
@@ -60,18 +65,12 @@ const authSlice = createSlice({
 			.addCase(registerUser.fulfilled, (state, { payload }) => {
 				console.log(payload, 'payload');
 				state.loading = false;
-				if (payload.name === 'FirebaseError') {
+				if (payload.name && payload.name === 'FirebaseError') {
 					state.error = payload.code;
 				} else {
-                    console.log(payload, 'payload');
+					console.log(payload, 'payload');
 					state.user = payload;
 				}
-				// if (payload.error) {
-				// 	state.error = payload.error;
-				// } else {
-				// 	console.log(payload, 'payload');
-				// 	state.user = payload;
-				// }
 			})
 			.addCase(registerUser.rejected, (state, { payload }) => {
 				state.loading = false;

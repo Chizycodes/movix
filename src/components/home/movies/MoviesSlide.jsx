@@ -36,8 +36,8 @@ const MoviesSlide = ({ type, title }) => {
 							movies.length > 0 &&
 							movies.map((movie) => {
 								return (
-									<div className="carousel-item">
-										<Movie key={movie.id} movie={movie} />
+									<div key={movie.id} className="carousel-item">
+										<Movie movie={movie} />
 									</div>
 								);
 							})}

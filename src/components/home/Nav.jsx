@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Nav = () => {
+	const { user } = useSelector((state) => state.auth);
 	const handleSearch = () => {
 		console.log('clicked');
 	};
@@ -23,7 +25,7 @@ const Nav = () => {
 					/>
 				</div>
 				<div className="text-[#fff] flex items-center gap-5">
-					<p>Hi, Fullname</p>
+					<p>Hi, {user?.name}</p>
 					<img src="/images/menu.svg" className='cursor-pointer' alt="menu" />
 				</div>
 			</div>

@@ -16,22 +16,26 @@ function App() {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (currentUser) => {
-			const user = {
-				email: currentUser.email,
-				displayName: currentUser.displayName,
-			};
-			dispatch(setUser(user));
+			if (currentUser !== null) {
+				const user = {
+					email: currentUser.email,
+					name: currentUser.displayName,
+				};
+				dispatch(setUser(user));
+			} else {
+				dispatch(setUser(null));
+			}
 		});
 	}, []);
 	return (
 		<div className="bg-[#FFFFFF]">
 			<ToastContainer position="top-right" theme="colored" />
 			<Routes>
-				<Route path="/" element={<AuthPage />} />
+				<Route path="/*" element={<AuthPage />} />
 				<Route path="/auth/*" element={<AuthPage />} />
 
 				<Route
-					path="/movies/"
+					path="/movies/*"
 					element={
 						<PrivateRoute>
 							<HomePage />
