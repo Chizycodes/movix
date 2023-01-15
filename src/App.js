@@ -4,8 +4,16 @@ import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUser } from './redux/auth/authSlice';
 
 function App() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getUser());
+	}, []);
 	return (
 		<div className="bg-[#FFFFFF]">
 			<ToastContainer position="top-right" theme="colored" />
