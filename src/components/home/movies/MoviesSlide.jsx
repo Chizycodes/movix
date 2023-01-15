@@ -13,13 +13,13 @@ const MoviesSlide = ({ type, title }) => {
 
 	useEffect(() => {
 		dispatch(fetchMovies());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="w-full">
-			<div className="flex items-center justify-between mb-[40px]">
-				<h2 className="text-[#000000] text-[36px] font-bold">{title}</h2>
-				<Link to="#" className="text-mRed text-[18px] flex items-center gap-5">
+			<div className="flex items-center justify-between mb-5 md:mb-[40px]">
+				<h2 className="text-[#000000] text-[24px] md:text-[36px] font-bold">{title}</h2>
+				<Link to="#" className="text-mRed text-sm md:text-[18px] flex items-center gap-2 md:gap-5">
 					<span>See more</span>
 					<img src="/images/red-right-arrow.svg" alt="arrow" />
 				</Link>
