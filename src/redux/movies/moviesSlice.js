@@ -20,17 +20,18 @@ const moviesSlice = createSlice({
 		loading: false,
 		movies: [],
 	},
-	extraReducers: {
-		[fetchMovies.pending]: (state, action) => {
-			state.loading = true;
-		},
-		[fetchMovies.fulfilled]: (state, action) => {
-			state.loading = false;
-			state.movies = action.payload;
-		},
-		[fetchMovies.rejected]: (state, action) => {
-			state.loading = false;
-		},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchMovies.pending, (state, action) => {
+				state.loading = true;
+			})
+			.addCase(fetchMovies.fulfilled, (state, action) => {
+				state.loading = false;
+				state.movies = action.payload;
+			})
+			.addCase(fetchMovies.rejected, (state, action) => {
+				state.loading = false;
+			});
 	},
 });
 

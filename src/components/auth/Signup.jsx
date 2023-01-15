@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from './AuthHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../redux/auth/authSlice';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
 	const navigate = useNavigate();
@@ -23,9 +24,16 @@ const Signup = () => {
 	const onSubmit = (data) => {
 		console.log(data);
 		dispatch(registerUser(data));
-		console.log(error, 'error');
-		console.log(msg, 'msg');
+		if (msg) {
+			toast.success(msg);
+			reset();
+			navigate('/dashboard');
+		} else {
+			toast.error(error);
+		}
 	};
+	console.log(error, 'error');
+	console.log(msg, 'msg');
 	return (
 		<>
 			<AuthHeader text="Please sign-in to your account and start your experience" />

@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from './AuthHeader';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/auth/authSlice';
 
 const Login = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { loading, user } = useSelector((state) => state.auth);
 	const [show, setShow] = useState(false);
-	const [loading, setLoading] = useState(false);
 
 	const {
 		register,
@@ -18,9 +21,15 @@ const Login = () => {
 	});
 
 	const onSubmit = (data) => {
-		navigate('/dashboard');
-		console.log(data);
+		dispatch(loginUser(data));
 	};
+
+	useEffect(() => {
+		if (user) {
+			reset();
+			navigate('/dashboard');
+		}
+	}, [user]);
 	return (
 		<>
 			<AuthHeader text="Please sign-up to start your experience" />
@@ -66,7 +75,7 @@ const Login = () => {
 				</div>
 
 				<button type="submit" className="v-btn w-full">
-					Login
+					{loading ? 'Loading...' : 'Login'}
 				</button>
 			</form>
 			<p className="text-[#747474] mt-5 font-medium text-sm text-center">
