@@ -6,13 +6,22 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from './redux/auth/authSlice';
+import { setUser } from './redux/auth/authSlice';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getUser());
+		onAuthStateChanged(auth, (currentUser) => {
+			const user = {
+				email: currentUser.email,
+				displayName: currentUser.displayName,
+			};
+			dispatch(setUser(user));
+		});
 	}, []);
 	return (
 		<div className="bg-[#FFFFFF]">
@@ -22,12 +31,12 @@ function App() {
 				<Route path="/auth/*" element={<AuthPage />} />
 
 				<Route
-					path="/dashboard/"
+					path="/movies/"
 					element={
-						<>
+						<PrivateRoute>
 							<HomePage />
 							<Footer />
-						</>
+						</PrivateRoute>
 					}
 				/>
 

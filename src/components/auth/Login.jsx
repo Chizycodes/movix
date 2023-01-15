@@ -27,7 +27,7 @@ const Login = () => {
 	useEffect(() => {
 		if (user) {
 			reset();
-			navigate('/dashboard');
+			navigate('/movies');
 		}
 	}, [user]);
 	return (

@@ -11,15 +11,13 @@ const initialState = {
 };
 
 export const registerUser = createAsyncThunk('auth/registerUser', async (data) => {
-	return await createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
+	return await createUserWithEmailAndPassword(auth, data.email, data.password, data.displayName)
 		.then((res) => {
-			console.log(res, 'register');
 			toast.success('Registration Successful');
 			return res;
 		})
 		.catch((err) => {
 			const error = { ...err };
-			console.log(error, 'error');
 			toast.error(error.code);
 			return error;
 		});
@@ -28,13 +26,15 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (data) =
 export const loginUser = createAsyncThunk('auth/loginUser', async (data) => {
 	return await signInWithEmailAndPassword(auth, data.email, data.password)
 		.then((res) => {
-			console.log(res, 'login');
 			toast.success('Login Successful');
-			return res;
+			const user = {
+				email: res.user.email,
+				displayName: res.user.displayName,
+			};
+			return user;
 		})
 		.catch((err) => {
 			const error = { ...err };
-			console.log(error, 'error');
 			toast.error(error.code);
 			return error;
 		});
@@ -44,14 +44,9 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		getUser: (state) => {
-			onAuthStateChanged(auth, (currentUser) => {
-				if (currentUser) {
-					state.user = currentUser;
-				} else {
-					state.user = null;
-				}
-			});
+		setUser: (state, { payload }) => {
+			console.log(payload, 'payload');
+			state.user = payload === null ? null : { ...payload };
 		},
 		logoutUser: async (state) => {
 			await signOut(auth);
@@ -65,12 +60,18 @@ const authSlice = createSlice({
 			.addCase(registerUser.fulfilled, (state, { payload }) => {
 				console.log(payload, 'payload');
 				state.loading = false;
-				if (payload.error) {
-					state.error = payload.error;
+				if (payload.name === 'FirebaseError') {
+					state.error = payload.code;
 				} else {
-					console.log(payload, 'payload');
+                    console.log(payload, 'payload');
 					state.user = payload;
 				}
+				// if (payload.error) {
+				// 	state.error = payload.error;
+				// } else {
+				// 	console.log(payload, 'payload');
+				// 	state.user = payload;
+				// }
 			})
 			.addCase(registerUser.rejected, (state, { payload }) => {
 				state.loading = false;
@@ -94,5 +95,5 @@ const authSlice = createSlice({
 	},
 });
 
-export const { logoutUser } = authSlice.actions;
+export const { logoutUser, setUser } = authSlice.actions;
 export default authSlice.reducer;

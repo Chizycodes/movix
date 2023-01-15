@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthHeader from './AuthHeader';
@@ -22,18 +22,9 @@ const Signup = () => {
 	});
 
 	const onSubmit = (data) => {
-		console.log(data);
 		dispatch(registerUser(data));
-		if (msg) {
-			toast.success(msg);
-			reset();
-			navigate('/dashboard');
-		} else {
-			toast.error(error);
-		}
 	};
-	console.log(error, 'error');
-	console.log(msg, 'msg');
+
 	return (
 		<>
 			<AuthHeader text="Please sign-in to your account and start your experience" />
@@ -43,11 +34,11 @@ const Signup = () => {
 						type="text"
 						placeholder="Full Name"
 						className="v-input"
-						{...register('name', {
+						{...register('displayName', {
 							required: true,
 						})}
 					/>
-					{errors.name && errors.name.type === 'required' && (
+					{errors.displayName && errors.displayName.type === 'required' && (
 						<span role="alert" className="text-[#ff00009e] text-xs">
 							Name required
 						</span>
