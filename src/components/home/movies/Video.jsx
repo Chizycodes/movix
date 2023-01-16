@@ -4,6 +4,7 @@ const Video = ({ movie }) => {
 	return (
 		<div>
 			<div className="w-[400px] relative">
+				<img src="/images/play-icon.svg" alt="play" className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer' />
 				<img
 					className="w-full h-[253px] object-fit"
 					src={process.env.REACT_APP_IMAGE_URL + movie?.poster_path}

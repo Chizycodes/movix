@@ -1,8 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import DropDown from './DropDown';
 
 const Nav = () => {
 	const { user } = useSelector((state) => state.auth);
+	const [dropdown, setDropdown] = useState(false);
 	const handleSearch = () => {
 		console.log('clicked');
 	};
@@ -25,9 +27,10 @@ const Nav = () => {
 						onClick={handleSearch}
 					/>
 				</div>
-				<div className="text-[#fff] flex items-center gap-2 lg:gap-5">
+				<div className="text-[#fff] flex items-center gap-2 lg:gap-5 relative">
 					<p>Hi, {user?.name}</p>
-					<img src="/images/menu.svg" className="cursor-pointer" alt="menu" />
+					<img src="/images/menu.svg" className="cursor-pointer" alt="menu" onClick={() => setDropdown(!dropdown)} />
+					{dropdown && <DropDown />}
 				</div>
 			</div>
 			<div className="relative w-full md:hidden block mt-5">

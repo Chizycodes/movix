@@ -4,15 +4,16 @@ import Casts from './Casts';
 import Movie from './Movie';
 import Video from './Video';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMovies } from '../../../redux/movies/moviesSlice';
+import { fetchMovies, getMovieCasts } from '../../../redux/movies/moviesSlice';
 
 const MoviesSlide = ({ type, title }) => {
-	const { movies, loading } = useSelector((state) => state.movies);
+	const { movies, casts, loading } = useSelector((state) => state.movies);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(fetchMovies());
+		dispatch(getMovieCasts());
 	}, [dispatch]);
 
 	return (
@@ -30,7 +31,7 @@ const MoviesSlide = ({ type, title }) => {
 					<h1>Loading...</h1>
 				</div>
 			) : (
-				<div className="carousel carousel-center space-x-4">
+				<div className="carousel carousel-center space-x-4 md:space-x-10">
 					<>
 						{type === 'movies' &&
 							movies.length > 0 &&
@@ -48,14 +49,24 @@ const MoviesSlide = ({ type, title }) => {
 							movies.length > 0 &&
 							movies.map((movie) => {
 								return (
-									<div className="carousel-item">
-										<Video key={movie.id} movie={movie} />
+									<div key={movie.id} className="carousel-item">
+										<Video movie={movie} />
 									</div>
 								);
 							})}
 					</>
 
-					{type === 'casts' && <Casts />}
+					<>
+						{type === 'casts' &&
+							casts.length > 0 &&
+							casts?.map((cast) => {
+								return (
+									<div key={cast.cast_id} className="carousel-item">
+										<Casts cast={cast} />
+									</div>
+								);
+							})}
+					</>
 				</div>
 			)}
 		</div>

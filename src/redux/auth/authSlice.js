@@ -18,7 +18,7 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (data) =
 				displayName: data.displayName,
 			}).then((res) => {
 				console.log('Profile Updated');
-                return res;
+				return res;
 			});
 		})
 		.catch((err) => {
@@ -50,11 +50,11 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, { payload }) => {
-			console.log(payload, 'payload');
 			state.user = payload === null ? null : { ...payload };
 		},
 		logoutUser: async (state) => {
 			await signOut(auth);
+			state.user = null;
 		},
 	},
 	extraReducers: (builder) => {
@@ -63,12 +63,10 @@ const authSlice = createSlice({
 				state.loading = true;
 			})
 			.addCase(registerUser.fulfilled, (state, { payload }) => {
-				console.log(payload, 'payload');
 				state.loading = false;
 				if (payload.name && payload.name === 'FirebaseError') {
 					state.error = payload.code;
 				} else {
-					console.log(payload, 'payload');
 					state.user = payload;
 				}
 			})
@@ -82,10 +80,8 @@ const authSlice = createSlice({
 				state.loading = false;
 				if (payload.name === 'FirebaseError') {
 					state.error = payload.code;
-					console.log(payload, 'payload');
 				} else {
 					// state.user = payload;
-					console.log(payload, 'payload');
 				}
 			})
 			.addCase(loginUser.rejected, (state, action) => {
