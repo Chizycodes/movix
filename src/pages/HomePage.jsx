@@ -6,8 +6,8 @@ const HomePage = () => {
 	return (
 		<div className="font-DMSans bg-[#fff]">
 			<Hero />
-			<section className="max-w-[1300px] mx-auto py-16">
-				<div className='mx-5'>
+			<section className="max-w-[1312px] mx-auto py-16">
+				<div className='mx-5 md:mx-8'>
 					<div className="mb-8 md:mb-20">
 						<MoviesSlide type="movies" title="Featured Movie" />
 					</div>
