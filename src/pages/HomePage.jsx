@@ -6,21 +6,23 @@ const HomePage = () => {
 	return (
 		<div className="font-DMSans bg-[#fff]">
 			<Hero />
-			<section className="max-w-[1280px] mx-auto px-5 md:px-10 py-16">
-				<div className="mb-8 md:mb-20">
-					<MoviesSlide type="movies" title="Featured Movie" />
-				</div>
+			<section className="max-w-[1300px] mx-auto py-16">
+				<div className='mx-5'>
+					<div className="mb-8 md:mb-20">
+						<MoviesSlide type="movies" title="Featured Movie" />
+					</div>
 
-				<div className="mb-8  md:mb-20">
-					<MoviesSlide type="movies" title="New Arrival" />
-				</div>
+					<div className="mb-8  md:mb-20">
+						<MoviesSlide type="movies" title="New Arrival" />
+					</div>
 
-				<div className="mb-8  md:mb-20">
-					<MoviesSlide type="videos" title="Exclusive Videos" />
-				</div>
+					<div className="mb-8  md:mb-20">
+						<MoviesSlide type="videos" title="Exclusive Videos" />
+					</div>
 
-				<div className="mb-8  md:mb-20">
-					<MoviesSlide type="casts" title="Featured Casts" />
+					<div className="mb-8  md:mb-20">
+						<MoviesSlide type="casts" title="Featured Casts" />
+					</div>
 				</div>
 			</section>
 		</div>
