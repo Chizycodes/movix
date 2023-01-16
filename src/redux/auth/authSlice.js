@@ -52,8 +52,8 @@ const authSlice = createSlice({
 		setUser: (state, { payload }) => {
 			state.user = payload === null ? null : { ...payload };
 		},
-		logoutUser: async (state) => {
-			await signOut(auth);
+		logoutUser: (state) => {
+			signOut(auth);
 			state.user = null;
 		},
 	},
